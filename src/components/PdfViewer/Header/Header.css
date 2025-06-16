@@ -1,0 +1,48 @@
+.header {
+  position: fixed;
+  top: 10px;
+  display: flex;
+  height: 50px;
+}
+.header-apply {
+  padding: 10px 20px;
+  background-color: transparent;
+  color: #000;
+  border: 2px solid #000;
+  border-radius: 6px;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+.header-apply :hover {
+  background-color: #607d8b;
+  color: #fff;
+  border-color: #607d8b;
+}
+.header__scale {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  justify-content: center;
+  margin: 1rem;
+}
+.scale {
+  width: 40px;
+  height: 40px;
+  font-size: 24px;
+  font-weight: bold;
+  color: #fff;
+  background-color: #333;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.2s, transform 0.1s;
+}
+.scale:hover {
+  background-color: #555;
+}
+
+.scale:active {
+  transform: scale(0.95);
+}

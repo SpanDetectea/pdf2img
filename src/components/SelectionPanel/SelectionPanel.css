@@ -1,0 +1,11 @@
+.selectionPanel{
+    padding: 10px;
+}
+.selectionPanel-img {
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  display: block;
+}
+.hint {
+    text-align: center;
+}
