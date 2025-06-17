@@ -8,4 +8,7 @@
 .pdfPage__overlay {
   z-index: 10;
   cursor: crosshair;
+  position: absolute;
+  top: 0;
+  left: 0;
 }

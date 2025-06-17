@@ -14,7 +14,7 @@ const PdfViewer = ({ setOnError }) => {
   const [isSelecting, setIsSelecting] = useState(false);
   const [startPoint, setStartPoint] = useState(null);
   const [currentRect, setCurrentRect] = useState(null);
-  const [selections, setSelections] = useState([]);
+  const [selections, setSelections] = useState(null);
   const [scale, setScale] = useState(1.5);
   const dispatch = useDispatch();
 
@@ -52,8 +52,11 @@ const PdfViewer = ({ setOnError }) => {
       canvas.height = viewport.height;
 
       const context = canvas.getContext("2d");
-      await page.render({ canvasContext: context, viewport }).promise;
-
+      try {
+        await page.render({ canvasContext: context, viewport }).promise;
+      } catch (e) {
+        //
+      }
       const overlay = overlayRefs.current[index];
       if (overlay) {
         overlay.width = viewport.width;
@@ -97,7 +100,7 @@ const PdfViewer = ({ setOnError }) => {
 
   const handleMouseUp = () => {
     if (isSelecting && currentRect) {
-      setSelections((prev) => [...prev, currentRect]);
+      setSelections(currentRect);
     }
     setIsSelecting(false);
     setStartPoint(null);
@@ -105,33 +108,31 @@ const PdfViewer = ({ setOnError }) => {
   };
 
   const cropToBase64 = () => {
-    selections.forEach((sel) => {
-      console.log(sel);
-      const sourceCanvas = canvasRefs.current[sel.pageIndex];
+    if (!selections) return
+      const sourceCanvas = canvasRefs.current[selections.pageIndex];
       const croppedCanvas = document.createElement("canvas");
-      croppedCanvas.width = sel.width;
-      croppedCanvas.height = sel.height;
+      croppedCanvas.width = selections.width;
+      croppedCanvas.height = selections.height;
 
       if (croppedCanvas.height > 0 && croppedCanvas.width > 0) {
         const ctx = croppedCanvas.getContext("2d");
         ctx.drawImage(
           sourceCanvas,
-          sel.x,
-          sel.y,
-          sel.width,
-          sel.height,
+          selections.x,
+          selections.y,
+          selections.width,
+          selections.height,
           0,
           0,
-          sel.width,
-          sel.height
+          selections.width,
+          selections.height
         );
 
         const base64Image = croppedCanvas.toDataURL("image/png");
         dispatch(addSelection(base64Image));
       }
-    });
 
-    setSelections([]);
+    setSelections(null);
 
     overlayRefs.current.forEach((canvas) => {
       const ctx = canvas?.getContext("2d");

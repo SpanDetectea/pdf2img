@@ -7,11 +7,8 @@ const selectionsSlice = createSlice({
     addSelection(state, action) {
       state.push(action.payload);
     },
-    clearSelections: (state) => {
-      state.items = [];
-    },
   },
 });
 
-export const { addSelection, clearSelections } = selectionsSlice.actions;
+export const { addSelection } = selectionsSlice.actions;
 export default selectionsSlice.reducer;

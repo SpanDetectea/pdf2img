@@ -13,7 +13,6 @@ function PdfPage({ index, pageNum, canvasRefs, overlayRefs, handlers }) {
         onMouseDown={(e) => handlers.handleMouseDown(e, index)}
         onMouseMove={(e) => handlers.handleMouseMove(e, index)}
         onMouseUp={handlers.handleMouseUp}
-        style={{ position: "absolute", top: 0, left: 0 }}
       />
     </div>
   );

@@ -15,8 +15,8 @@
   cursor: pointer;
   transition: all 0.3s ease;
 }
-.header-apply :hover {
-  background-color: #607d8b;
+.header-apply:hover {
+  background-color: #555;
   color: #fff;
   border-color: #607d8b;
 }
@@ -43,6 +43,6 @@
   background-color: #555;
 }
 
-.scale:active {
+.scale:active, .header-apply:active {
   transform: scale(0.95);
 }
