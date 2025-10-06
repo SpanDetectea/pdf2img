@@ -1,70 +1,61 @@
-# Getting Started with Create React App
+# Выделение PDF и преобразование в Base64
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Описание
 
-## Available Scripts
+Веб-приложение позволяет пользователям загружать PDF-файл, выделять области на страницах и преобразовывать их в изображения формата Base64.  
+Приложение было разработано в рамках тестового задания.
 
-In the project directory, you can run:
+---
 
-### `npm start`
+## Цель
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Создать веб-приложение, которое:
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- Принимает PDF-файл через GET-параметр `fileName`.
+- Позволяет пользователю выделять произвольные прямоугольные области на страницах PDF.
+- Преобразует выбранные области в изображения Base64 и отображает их в правой колонке.
 
-### `npm test`
+---
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Используемые технологии
 
-### `npm run build`
+- **React** — библиотека для построения интерфейсов.  
+- **Redux** — менеджер состояния приложения.  
+- **HTML5 Canvas** — отрисовка страниц PDF и выделенных областей.  
+- **pdfjs-dist** — рендеринг PDF-документов в браузере.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+---
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Функциональные возможности
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Левая колонка (PDF)
 
-### `npm run eject`
+- Отображение всех страниц PDF-документа последовательно друг под другом.
+- Прокрутка страниц вертикально.
+- Выделение произвольной прямоугольной области на изображении каждой страницы.
+- Сохранение выделенного фрагмента в памяти компонента до нажатия кнопки **“Применить”**.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+### Правая колонка (Base64)
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+- Демонстрация выбранных фрагментов документов в виде изображений Base64.
+- Каждый раз, когда пользователь выделяет новую область и нажимает **“Применить”**, фрагмент добавляется как отдельное изображение.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+---
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+## Установка и запуск проекта
 
-## Learn More
+1. Клонируйте репозиторий:
+   
+```git clone <url проекта>```
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+2. Перейдите в папку проекта:
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+```cd <имя проекта>```
 
-### Code Splitting
+3. Установите зависимости:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+```npm i``` 
 
-### Analyzing the Bundle Size
+4. Запустите проект в режиме разработки:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+```npm start```
